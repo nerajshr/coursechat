@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Page</title>
+    
+    <link rel="stylesheet" href="{% static './Styles/home.css' %}">
+    <link rel="stylesheet" href="{% static './Styles/form.css' %}">
+    <script src="https://kit.fontawesome.com/a8c305d3e9.js"></script>
+    
+</head>
+<body>
+     <header>
+         <div class="fas fa-bars menu-icon"></div>
+         <div class="user-profile">
+             <div class="fas fa-times menu-close-btn" title="Close"></div>
+             <ul class="menu-links">
+                 <li class="user-img">
+                     <i class="fas fa-user-circle"></i>
+                 </li>
+                 <li class="user-name">{{request.user.username}}</li>
+                 <li class="logout-btn">
+                     {% if request.user.username %}
+                     <button><a href="{% url 'logout' %}">Logout</a></button>
+                     {% else %}
+                     <button><a href="{% url 'login' %}">Login</a></button>
+                     {% endif %}
+                 </li>
+             </ul>
+         </div>
+     </header>
+    <main>
+        <h2 class="main-heading">Let's create a new</h2>
+        <h2 class="main-heading">CourseChat</h2>
+        <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+            <label for="{{ form.youtube_embed_url.id_for_label }} id=" video-link" type="url" placeholder="Embed Link"
+                name="video-link"> EmbedLink :</label>
+                {{form.youtube_embed_url}}
+            <label id="video-link" type="url" placeholder="Current Link" name="video-link">CurrentLink :</label>
+                {{form.youtube_video_url}}
+            <label id="video-descp" type="text" placeholder="Title" name="video-title">VideoTitle :</label>
+                {{form.title}}
+            <label id="video-descp" type="text" placeholder="Video Description" name="video-descp">Description :</label>
+                {{form.description}}
+            <label id="video-time" type="text" placeholder="CourseChat Time" name="video-time" onfocus="(this.type='time')" required>
+
+            <input id="submit-btn" type="submit" value="SUBMIT">
+        </form>
+    </main>
+        <footer>
+            <ul class="footer-menu">
+                <li class="footer-menu-item">
+                    <a href="{% url 'home' %}"><i class="fas fa-bell"></i></a>
+                </li>
+                <li class="footer-menu-item active">
+                    <a href="{% url 'home' %}"><i class="fas fa-home"></i></a>
+                </li>
+                <li class="footer-menu-item">
+                    <a href="{% url 'home' %}"><i class="fas fa-comment-dots"></i></li></a>
+                </li>
+            </ul>
+        </footer>
+
+    <script src="{% static './Scripts/form.js' %}"></script>
+    <script src="{% static './Scripts/home.js' %}"></script>
+</body>
+</html>

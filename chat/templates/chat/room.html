@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="{% static './Styles/home.css' %}">
+    <script src="https://kit.fontawesome.com/a8c305d3e9.js"></script>
+
+</head>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<body>
+    
+ <h2 class="main-heading">Live CourseChat</h2>
+ <div class="card">
+     <div class="card__video-container">
+        <div id="video-placeholder"></div>
+     </div>
+     <div class="card__video-info">
+         
+     </div>
+ </div>
+<div class="card">
+   
+    <div class="card__video-info">
+            <b></bold><textarea id="chat-log" cols="46" rows="20" ></textarea></b><br />
+            <input id="chat-message-input" class="video-join-btn"  type="text" /><br />
+            <input id="chat-message-submit" class="video-join-btn" type="button" value="Send" />
+
+    </div>
+</div>
+
+</body>
+<script>
+var roomName = {{ room_name_json }};
+var userName = '{{user_name}}';
+
+var player;
+// var vdId = 'mSHLO-hE2nI' ;  //comes from youtube_obj.current_url
+// https://youtu.be/
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('video-placeholder', {
+width: 600,
+height: 400,
+videoId: roomName,
+playerVars: {
+color: 'white',
+'autoplay': 1,
+'controls': 0,
+
+// playlist: 'taJ60kskkns,FG0fTKAqZ5g'
+},
+// events: {
+// onReady: initialize
+// }
+});
+}
+
+
+    
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + roomName + '/');
+
+    chatSocket.onmessage = function (e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        var updateTime = data['backend_time']
+        // console.log(e)
+        // console.log(data)
+        // console.log('inside the onmessage time is ', updateTime)
+        document.querySelector('#chat-log').value += ('@'+ userName + '\n'+ message + '\n\n');
+        
+        myNewFunction(updateTime);
+    };
+
+    chatSocket.onclose = function (e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function (e) {
+        if (e.keyCode === 13) { // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function (e) {
+        let time = player.getCurrentTime()
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'time': time,
+        }));
+
+        messageInputDom.value = '';
+    };
+
+
+
+
+function myNewFunction(newTime){
+let currentTime =  player.getCurrentTime() 
+console.log('current time')
+console.log(currentTime)
+console.log('new time')
+console.log(newTime)
+if (currentTime < newTime){
+    player.seekTo(newTime);
+}
+console.log('after update')
+console.log(player.getCurrentTime() )
+}
+
+</script>
+
+</html>

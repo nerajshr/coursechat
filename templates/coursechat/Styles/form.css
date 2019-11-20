@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
+form{
+    padding:1rem;
+    margin:2rem auto;
+    width:85%;
+    border-radius: 5px;
+}
+
+input{
+    padding: 0.5rem;
+    display: block;
+    margin:14px auto;
+    border: 1px solid #2b335c;
+    outline: none;
+    width:90%;
+    border-radius: 4px;
+}
+
+input[type="submit"]{
+    text-align: center;
+    background-color: #de8560;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    box-shadow: 2px 2px 5px 0.56px rgba(0,0,0,0.3);
+}

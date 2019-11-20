@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    
+    <link rel="stylesheet" href="{% static './Styles/home.css' %}">
+    <script src="https://kit.fontawesome.com/a8c305d3e9.js"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="fas fa-bars menu-icon"></div>
+        <div class="user-profile">
+            <div class="fas fa-times menu-close-btn" title="Close"></div>
+            <ul class="menu-links">
+                <li class="user-img">
+                    <i class="fas fa-user-circle"></i>
+                </li>
+                <li class="user-name">{{request.user.username}}</li>
+                <li class="logout-btn" >
+                    {% if request.user.username %}
+                    <button><a href="{% url 'logout' %}">Logout</a></button>
+                    {% else %}
+                    <button><a href="{% url 'login' %}">Login</a></button>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <h2 class="main-heading">Live CourseChat</h2>
+        {% for object in object_list %}
+        <div class="card">
+            <div class="card__video-container">
+                <iframe src="{{object.youtube_embed_url}}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        
+            <div class="card__video-info">
+                <h3 class="video-topic">{{ object.title }}</h3>
+                <p class="video-descp">{{ object.description}}</p>
+                <button class="video-join-btn"><a href="{{object.get_absolute_url}} ">Join Now</a>
+                </button>
+        
+
+            </div>
+        </div>
+        {% endfor %} 
+    </main>
+
+
+    <div class="add_course"><a href="{% url 'create' %}">+</a></div>
+
+
+
+    <footer>
+        <ul class="footer-menu">
+            <li class="footer-menu-item">
+                <a href="{% url 'home' %}"><i class="fas fa-bell"></i></a>
+            </li>
+            <li class="footer-menu-item active">
+                <a href="{% url 'home' %}"><i class="fas fa-home"></i></a>
+            </li>
+            <li class="footer-menu-item">
+                <a href="{% url 'home' %}"><i class="fas fa-comment-dots"></i></li></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="{% static './Scripts/home.js' %}"></script>
+</body>
+</html>

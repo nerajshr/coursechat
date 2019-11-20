@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+
+*{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body,html{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-tap-highlight-color:transparent;
+}
+
+header{
+    height:2.8rem;
+    width: 100%;
+    background-color: #2b335c;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 100;
+}
+
+main{
+    margin-top:3.8rem;
+}
+
+.menu-icon{
+    color:#fff;
+    font-size: 1.5rem;
+    margin:10px auto;
+    padding:0px 2.2rem;
+    cursor: pointer;    
+}
+
+.user-profile{
+    background-color: rgba(222, 134, 96, 0.98);
+    position: fixed;
+    top: 0;
+    left: -5000px;
+    z-index: 400;
+    width: 78%;
+    height: 100vh;
+    transition: left 0.5s;
+}
+
+.open{
+    left:0;
+}
+
+.menu-close-btn{
+    position: absolute;
+    font-size: 1.5rem;
+    top: 1.5rem;
+    right: 2rem;
+    cursor: pointer;
+}
+
+.menu-links{
+    list-style-type: none;
+    margin: 2rem auto;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    height: 80%;
+    justify-items: center;
+    align-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.user-img{
+    font-size: 5rem;
+}
+
+.logout-btn button{
+    border:2px solid #000;
+    padding: 0.5rem;
+    width:135px;
+    outline: none;
+    background: transparent;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-shadow: 1px 1px 2px 0.56px rgba(0,0,0,0.3);
+}
+
+.main-heading{
+    color:#de8560;
+    text-align: center;
+}
+
+.card{
+ width:80%;
+ margin:1rem auto;
+ border-radius: 5px;
+ box-shadow: 1.5px 1.5px 5px 0.56px rgba(0,0,0,0.3);
+}
+.card__video-container{
+    width: 100%;
+}
+.card__video-container iframe{
+    width:100%;
+    border-radius: 5px 5px 0px 0px;
+}
+.card__video-info{
+    padding: 1rem;
+    text-align: center;
+}
+.video-topic{
+    margin:0;
+}
+.video-descp{
+    font-size: 17px;
+}
+
+.video-join-btn{
+    color:#FFF;
+    padding: 8px 16px;
+    background: #de8560;
+    border:none;
+    letter-spacing: 1.8px;
+    font-size: 1.02rem;
+    border-radius: 2px;
+}
+
+.add_course{
+    width:50px;
+    height:50px;
+    font-size: 2.6rem;
+    text-align: center;
+    color:#fff;
+    border-radius: 50%;
+    background-color: #de8560;
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    z-index: 1;
+    box-shadow: 2px 2px 3px 1px rgba(222, 134, 96, 0.267);
+    cursor: pointer;
+}
+
+footer{
+    background-color: #2b335c;
+    width:100%;
+    position: fixed;
+    bottom: 0;
+    height:3rem;
+}
+
+.footer-menu{
+    margin:0;
+    list-style: none;
+    display: flex;
+    padding: 8px 0;
+    height:100%;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.footer-menu-item{
+    width:calc(100% / 3);
+    text-align: center;
+    margin:0 2rem;
+}
+
+.footer-menu-item a{
+    color:inherit;
+    text-decoration: none;
+}
+
+.active{
+    background-color: #FFF;
+    color:#de8560;
+    border-radius: 30px;
+    position: relative;
+    transition: all 0.2s;
+}
+
+
+/* for desktop use */
+/* @media screen and (){
+
+} */

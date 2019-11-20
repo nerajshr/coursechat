@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #2b335c;
+    text-align: center;
+    color:rgba(255, 255, 255, 0.507);
+}
+
+.logo-container{
+    width:90%;
+    margin:2rem auto;
+}
+
+.logo-container img{
+    width:90%;
+}
+
+input{
+    display: block;
+    margin:1rem auto;
+    width:300px;
+    padding:0.7rem;
+    border-radius: 20px;
+    outline: none;
+    border:none;
+}
+input[type="submit"]{
+    background-color: #de8560;
+    color:#fff;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+p{
+    border-top: 1px solid rgba(255, 255, 255, 0.192);
+    width:290px;
+    margin: 0px auto;
+    padding-top: 8px;
+}
+
+h5{
+    margin:0.4rem auto;
+}
